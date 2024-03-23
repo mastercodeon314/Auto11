@@ -33,11 +33,6 @@ namespace Auto11
             }
         }
 
-        public FlightSigningManager()
-        {
-
-        }
-
         public void EnableFlightSigning()
         {
             // Execute bcdedit command to enable flight signing
@@ -49,6 +44,16 @@ namespace Auto11
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
             process.WaitForExit();
+
+            // Execute bcdedit command to enable flight signing
+            Process process2 = new Process();
+            process2.StartInfo.FileName = "bcdedit";
+            process2.StartInfo.Arguments = "/set {bootmgr} flightsigning on";
+            process2.StartInfo.Verb = "runas"; // Run as administrator
+            process2.StartInfo.CreateNoWindow = true;
+            process2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process2.Start();
+            process2.WaitForExit();
         }
 
         public void DisableFlightSigning()
@@ -62,6 +67,16 @@ namespace Auto11
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
             process.WaitForExit();
+
+            // Execute bcdedit command to disable flight signing
+            Process process2 = new Process();
+            process2.StartInfo.FileName = "bcdedit";
+            process2.StartInfo.Arguments = "/set {bootmgr} flightsigning off";
+            process2.StartInfo.Verb = "runas"; // Run as administrator
+            process2.StartInfo.CreateNoWindow = true;
+            process2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process2.Start();
+            process2.WaitForExit();
         }
     }
 }
