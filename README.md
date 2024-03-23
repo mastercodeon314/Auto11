@@ -1,6 +1,6 @@
 # Auto11
 ## What is this?
-Auto11 is a tool designed to make doing an in-place upgrade on windows easy once again.
+Auto11 is a tool designed to make doing an in-place upgrade on windows easy, and to reliably upgrade from a release build to an insider build.
 
 ![image](https://github.com/mastercodeon314/Auto11/assets/78676320/858f7076-39ae-429b-97e9-1b7cfb729d2d)
 
@@ -25,7 +25,7 @@ https://discord.gg/v8PqMRHcHh
 - Fixes the big delay when auto starting an app from the Run registry key.
 
 ## Usage
-- You may need to install the .NET 8.0 Runtime for desktop, if so download the installer [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.3-windows-x64-installer) and follow instructions for installation.
+- You may need to install the .NET 8.0 Runtime for desktop, if so, download the installer [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.3-windows-x64-installer) and follow instructions for installation.
 
 - Enable flight signing mode and reboot
   ![Enable Flight Signing](https://github.com/mastercodeon314/Auto11/assets/78676320/ba964fda-8148-4250-9a4f-eec3db539621)
@@ -46,7 +46,7 @@ https://discord.gg/v8PqMRHcHh
 
 ## Roadmap
 - Creation of a tab that can patch a windows installer iso for TPM requirements.
-- Support for non Insider releases of Windows, not requiring Flight Signing enablement.
+- Support for non-Insider releases of Windows, not requiring Flight Signing enablement.
 - Optimization of app startup
 
 ## Donation links
