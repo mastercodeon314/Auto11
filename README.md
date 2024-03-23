@@ -7,7 +7,7 @@ Big thanks to [k0mraid3](https://github.com/k0mraid3) for extensive research and
 Also a thanks to [dongle-the-gadget](https://github.com/dongle-the-gadget) for their [WinverUWP](https://github.com/dongle-the-gadget/WinverUWP) source code that allowed me to get the real version info for the About page!
 
 You can join our discord server for Stobaugh Group.
-We have channels for chat, support, and releases of auto11.
+We have channels for chat, support, and releases of Auto11.
 https://discord.gg/v8PqMRHcHh
 
 ## Features
