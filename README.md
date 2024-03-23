@@ -2,6 +2,9 @@
 ## What is this?
 This is a tool designed to make doing an in-place upgrade on windows easy once again.
 
+It allows you to enable flight signing with a proper GUI, then easily mount and dismount a Windows Installer iso.
+Once the iso is mounted, a button is used to execute the installer with the right command line arguments to bypass system requirements. 
+
 ## Support
 Big thanks to [k0mraid3](https://github.com/k0mraid3) for extensive research and testing with me on this project!
 Also a thanks to [dongle-the-gadget](https://github.com/dongle-the-gadget) for their [WinverUWP](https://github.com/dongle-the-gadget/WinverUWP) source code that allowed me to get the real version info for the About page!
