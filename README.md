@@ -4,6 +4,7 @@ This is a tool designed to make doing an in-place upgrade on windows easy once a
 
 ## Support
 Big thanks to [k0mraid3](https://github.com/k0mraid3) for extensive research and testing with me on this project!
+Also a thanks to [dongle-the-gadget](https://github.com/dongle-the-gadget) for their [WinverUWP](https://github.com/dongle-the-gadget/WinverUWP) source code that allowed me to get the real version info for the About page!
 You can join our discord server for Stobaugh Group.
 We have channels for chat, support, and releases of auto11.
 https://discord.gg/v8PqMRHcHh
@@ -49,6 +50,7 @@ Anything is super helpful! Anything donated helps me keep developing this progra
 ## References
 - https://superuser.com/questions/1799420/how-to-fix-startupdelayinmsec-trick-does-not-work-anymore/1835433#1835433
 - https://github.com/AveYo/MediaCreationTool.bat
+- https://github.com/dongle-the-gadget/WinverUWP
 - https://forum.bigfix.com/t/fixing-a-system-reserve-partition/39684
 - https://winaero.com/microsoft-has-patched-the-product-server-for-tpm-check-bypass/
 - https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcdedit-command-line-options?view=windows-11
