@@ -21,13 +21,13 @@ https://discord.gg/v8PqMRHcHh
 - You may need to install the .NET 8.0 Runtime for desktop, if so download the installer [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-8.0.3-windows-x64-installer) and follow instructions for installation.
 
 - Enable flight signing mode and reboot
-  ![image](https://github.com/mastercodeon314/Auto11/assets/78676320/7951807d-f128-41fa-bb1b-335baddef859)
+  ![Enable Flight Signing](https://github.com/mastercodeon314/Auto11/assets/78676320/ba964fda-8148-4250-9a4f-eec3db539621)
   
 - Once flight signing is enabled, simply select your iso for the windows installer and mount the iso.
-  ![image](https://github.com/mastercodeon314/Auto11/assets/78676320/3e1c6f98-a4ea-4bf9-a825-42dfe43c040e)
+  ![Mount Iso](https://github.com/mastercodeon314/Auto11/assets/78676320/081a4a14-b877-481c-bed7-8d5386ff19a8)
 
 - Now that your iso is mounted, just click the Start Upgrade button then the installer will be launched, as well as all requirements being bypassed!
-  ![image](https://github.com/mastercodeon314/Auto11/assets/78676320/c1d3523d-a774-42c5-92d1-0e8056504669)
+  ![Start Upgrade](https://github.com/mastercodeon314/Auto11/assets/78676320/950c7f64-7846-402b-839f-09f2176e7fba)
 
 ## Notes
 - Usage depends on what build of windows you are upgrading from.
