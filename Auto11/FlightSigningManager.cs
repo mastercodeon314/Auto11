@@ -26,6 +26,11 @@ namespace Auto11
                 string output = process.StandardOutput.ReadToEnd();
                 process.WaitForExit();
 
+
+                // Need to check for both instances of this string.
+                // One is bootmgr, the other is current
+                // If only one exists, we need to figure out which one it is and say such. 
+                // Handling of both need to be done in the end instead of this garbage we have going right now where we blindly set both to on. 
                 bool result = output.Contains("flightsigning           Yes");
 
                 // Check if the output contains "Yes"
