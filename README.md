@@ -1,6 +1,8 @@
 # Auto11
 ## What is this?
-This is a tool designed to make doing an in-place upgrade on windows easy once again.
+Auto11 is a tool designed to make doing an in-place upgrade on windows easy once again.
+
+![image](https://github.com/mastercodeon314/Auto11/assets/78676320/858f7076-39ae-429b-97e9-1b7cfb729d2d)
 
 It allows you to enable flight signing with a proper GUI, then easily mount and dismount a Windows Installer iso.
 Once the iso is mounted, a button is used to execute the installer with the right command line arguments to bypass system requirements. 
