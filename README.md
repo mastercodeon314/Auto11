@@ -8,7 +8,7 @@
 
 ![image](https://github.com/mastercodeon314/Auto11/assets/78676320/bb67e3c0-ed8f-45d0-9f9a-1b80971ff0a0)
 
-## So What is this thing?
+## So what is this thing?
 Auto11 is a tool specifically designed to make doing an in-place upgrade on a Windows OS easy and to upgrade from a release build to an insider build reliably and without (Expected) any of the standard requirements, such as TPM.
 
 ## So how does it work?!
@@ -61,7 +61,7 @@ We have channels for chat, support, and releases of Auto11.
 - Support for non-Insider releases of Windows, not requiring Flight Signing enablement.
 - Optimization of app startup
 
-## Donation links
+## Donation Links
 Anything is super helpful! Your kindness allows me to continue developing this program and many others well into the future.
 - https://www.paypal.com/paypalme/lifeline42
 
