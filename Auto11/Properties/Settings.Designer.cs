@@ -94,5 +94,17 @@ namespace Auto11.Properties {
                 this["flightSigningNeedsReboot"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enableUsbDriveSelector {
+            get {
+                return ((bool)(this["enableUsbDriveSelector"]));
+            }
+            set {
+                this["enableUsbDriveSelector"] = value;
+            }
+        }
     }
 }

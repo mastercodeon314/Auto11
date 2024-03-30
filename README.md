@@ -1,4 +1,13 @@
 # Auto11
+
+## What's new v1.1
++ Added a selector box to select a USB drive instead of mounting an iso
++ Added a setting to enable the USB selector box.
++ Fixed spelling mistake in Iso mount box
++ Repo Code cleanup
+
+![image](https://github.com/mastercodeon314/Auto11/assets/78676320/bb67e3c0-ed8f-45d0-9f9a-1b80971ff0a0)
+
 ## So What is this thing?
 Auto11 is a tool specifically designed to make doing an in-place upgrade on a Windows OS easy and to upgrade from a release build to an insider build reliably and without (Expected) any of the standard requirements, such as TPM.
 

@@ -10,8 +10,8 @@
     <Authors>Mastercodeon314</Authors>
     <Company>Stobaugh Group</Company>
     <Description>A tool that makes doing an in place upgrade for windows 11 super easy!</Description>
-    <AssemblyVersion>1.0</AssemblyVersion>
-    <FileVersion>1.0</FileVersion>
+    <AssemblyVersion>1.1</AssemblyVersion>
+    <FileVersion>1.1</FileVersion>
     <ApplicationIcon>windows-11.ico</ApplicationIcon>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>

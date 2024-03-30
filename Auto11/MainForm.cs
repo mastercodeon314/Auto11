@@ -4,9 +4,9 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using Auto11.Models;
 using WinverUWP.Helpers;
 using Microsoft.Win32;
+using System.IO;
 
 namespace Auto11
 {
@@ -56,6 +56,8 @@ namespace Auto11
             restartingWindowsLbl.Text = $"Restarting windows in {restartCounter} seconds...";
 
             mainTabs.Selected += MainTabs_Selected;
+            usbSelectorCard.VisibleChanged += UsbSelectorCard_VisibleChanged;
+            isoSelectorCard.VisibleChanged += IsoSelectorCard_VisibleChanged;
 
             loadSettings();
 
@@ -120,6 +122,107 @@ namespace Auto11
             string versionStirng = productName + " " + displayVersion + " (OS Build " + buildNumber + ")";
 
             windowsVersionLbl.Text = versionStirng;
+        }
+
+        
+
+        [DllImport("shell32.dll")]
+        private static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, out SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct SHFILEINFO
+        {
+            public IntPtr hIcon;
+            public int iIcon;
+            public uint dwAttributes;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            public string szDisplayName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+            public string szTypeName;
+        }
+
+        private const uint SHGFI_ICON = 0x100;
+        private const uint SHGFI_SMALLICON = 0x1;
+
+        public void PopulateUSBDrivesComboBox()
+        {
+            usbDriveBox.Items.Clear();
+
+            List<string> driveLetters = new List<string>();
+
+            DriveInfo[] allDrives = DriveInfo.GetDrives();
+            foreach (DriveInfo drive in allDrives)
+            {
+                if (drive.DriveType == DriveType.Removable)
+                {
+                    driveLetters.Add(drive.Name);
+                }
+            }
+
+            foreach (string driveLetter in driveLetters)
+            {
+                string driveName = GetDriveName(driveLetter);
+                usbDriveBox.Items.Add(driveLetter);
+            }
+
+            if (usbDriveBox.Items.Count > 0)
+            {
+                usbDriveBox.SelectedIndex = 0;
+            }
+        }
+
+        private string GetDriveName(string driveLetter)
+        {
+            SHFILEINFO shinfo = new SHFILEINFO();
+            SHGetFileInfo(driveLetter, 0, out shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICON | SHGFI_SMALLICON);
+            string driveName = shinfo.szDisplayName;
+            return driveName;
+        }
+
+        private void IsoSelectorCard_VisibleChanged(object? sender, EventArgs e)
+        {
+            if (isoSelectorCard.Visible)
+            {
+                if (isoPathBox.Text != String.Empty)
+                {
+                    if (File.Exists(isoPathBox.Text))
+                    {
+                        mountIsoBtn.Enabled = true;
+                    }
+                    else
+                    {
+                        mountIsoBtn.Enabled = false;
+                    }
+                }
+                else
+                {
+                    startUpgradeBtn.Enabled = false;
+                }
+
+                if (File.Exists(@"G:\setup.exe"))
+                {
+                    startUpgradeBtn.Enabled = true;
+                }
+            }
+        }
+
+        private void UsbSelectorCard_VisibleChanged(object? sender, EventArgs e)
+        {
+            PopulateUSBDrivesComboBox();
+
+            if (usbSelectorCard.Visible)
+            {
+                mountIsoBtn.Enabled = false;
+                dismountIsoBtn.Enabled = false;
+            }
+
+            if (usbDriveBox.Items.Count > 0)
+            {
+                if (File.Exists(usbDriveBox.SelectedItem.ToString() + @"setup.exe"))
+                {
+                    startUpgradeBtn.Enabled = true;
+                }
+            }
         }
 
         private void IsoMan_IsoDismounted(object? sender, EventArgs e)
@@ -227,11 +330,17 @@ namespace Auto11
             enableAutoRestartSwitch.Checked = Properties.Settings.Default.autoAppRestart;
             systemReservedFixSwitch.Checked = Properties.Settings.Default.autoSystemReservedFix;
             autoCloseSwitch.Checked = Properties.Settings.Default.autoClose;
+            enableUsbDriveSwitch.Checked = Properties.Settings.Default.enableUsbDriveSelector;
 
-            if (Properties.Settings.Default.LastFile != String.Empty)
+            setSelectionMode();
+
+            if (!enableUsbDriveSwitch.Checked)
             {
-                isoPathBox.Text = Properties.Settings.Default.LastFile;
-                mountIsoBtn.Enabled = true;
+                if (Properties.Settings.Default.LastFile != String.Empty)
+                {
+                    isoPathBox.Text = Properties.Settings.Default.LastFile;
+                    mountIsoBtn.Enabled = true;
+                }
             }
         }
 
@@ -263,15 +372,33 @@ namespace Auto11
         {
             // Run the setup exe with cmd line on the mounted drive
 
-            startUpgradeBtn.Enabled = false;
-            dismountIsoBtn.Enabled = false;
-            upgradeProcess = new Process();
-            upgradeProcess.StartInfo.FileName = "G:\\setup.exe";
-            upgradeProcess.StartInfo.Arguments = "/Product Server /Auto Upgrade /Compat IgnoreWarning /MigrateDrivers All /Telemetry Disable";
-            upgradeProcess.StartInfo.UseShellExecute = false;
-            upgradeProcess.EnableRaisingEvents = true;
-            upgradeProcess.Exited += upgradeProcess_Exited;
-            upgradeProcess.Start();
+            if (enableUsbDriveSwitch.Checked)
+            {
+                startUpgradeBtn.Enabled = false;
+
+                string selectedDrive = usbDriveBox.SelectedItem.ToString();
+
+                upgradeProcess = new Process();
+                upgradeProcess.StartInfo.FileName = selectedDrive + "setup.exe";
+                upgradeProcess.StartInfo.Arguments = "/Product Server /Auto Upgrade /Compat IgnoreWarning /MigrateDrivers All /Telemetry Disable";
+                upgradeProcess.StartInfo.UseShellExecute = false;
+                upgradeProcess.EnableRaisingEvents = true;
+                upgradeProcess.Exited += upgradeProcess_Exited;
+                upgradeProcess.Start();
+            }
+            else
+            {
+                startUpgradeBtn.Enabled = false;
+                dismountIsoBtn.Enabled = false;
+                upgradeProcess = new Process();
+                upgradeProcess.StartInfo.FileName = "G:\\setup.exe";
+                upgradeProcess.StartInfo.Arguments = "/Product Server /Auto Upgrade /Compat IgnoreWarning /MigrateDrivers All /Telemetry Disable";
+                upgradeProcess.StartInfo.UseShellExecute = false;
+                upgradeProcess.EnableRaisingEvents = true;
+                upgradeProcess.Exited += upgradeProcess_Exited;
+                upgradeProcess.Start();
+            }
+            
 
             //setupCheckerTimer.Start();
 
@@ -487,6 +614,39 @@ namespace Auto11
             p.StartInfo.UseShellExecute = true;
             p.StartInfo.FileName = stobaughGroupLink.Text;
             p.Start();
+        }
+
+        private void setSelectionMode()
+        {
+            if (enableUsbDriveSwitch.Checked)
+            {
+                isoSelectorCard.Visible = false;
+                usbSelectorCard.Visible = true;
+            }
+            else
+            {
+                isoSelectorCard.Visible = true;
+                usbSelectorCard.Visible = false;
+            }
+        }
+
+        private void enableUsbDriveSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.enableUsbDriveSelector = enableUsbDriveSwitch.Checked;
+            Properties.Settings.Default.Save();
+
+            setSelectionMode();
+        }
+
+        private void usbDriveBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (usbDriveBox.Items.Count > 0)
+            {
+                if (File.Exists(usbDriveBox.SelectedItem.ToString() + @"setup.exe"))
+                {
+                    startUpgradeBtn.Enabled = true;
+                }
+            }
         }
     }
 }
