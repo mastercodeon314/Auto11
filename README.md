@@ -13,7 +13,7 @@ Auto11 is a tool specifically designed to make doing an in-place upgrade on a Wi
 
 ## So how does it work?!
 
-![image](https://github.com/mastercodeon314/Auto11/assets/78676320/858f7076-39ae-429b-97e9-1b7cfb729d2d)
+![image](https://github.com/mastercodeon314/Auto11/assets/78676320/a8f4adc1-4df2-49c6-bb55-7469b5eaeb5d)
 
 It allows you to enable flight signing with a proper GUI, and then easily mount and dismount a Windows Installer iso.
 Once the iso is mounted, a button has been implemented to execute the installer with the right command line arguments to bypass system requirements. 
