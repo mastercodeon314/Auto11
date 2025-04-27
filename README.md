@@ -19,13 +19,8 @@ It allows you to enable flight signing with a proper GUI, and then easily mount 
 Once the iso is mounted, a button has been implemented to execute the installer with the right command line arguments to bypass system requirements. 
 
 ## Support
-Big thanks to my colleague, [k0mraid3](https://github.com/k0mraid3) for extensive research and testing with me on this project!
 
 Also, Credit to [dongle-the-gadget](https://github.com/dongle-the-gadget) for their [WinverUWP](https://github.com/dongle-the-gadget/WinverUWP) source code that allowed me to get the real version info for the "About" page!
-
-You can join our discord server for Stobaugh Group.
-We have channels for chat, support, and releases of Auto11.
-```https://discord.gg/v8PqMRHcHh```
 
 ## Features
 - Bypasses all system requirements for the Windows 11 installer when doing an in-place upgrade
